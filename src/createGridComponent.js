@@ -818,12 +818,12 @@ export default function createGridComponent({
 
     _resetIsScrolling = () => {
       this._resetIsScrollingTimeoutId = null;
-
+/*
       this.setState({ isScrolling: false }, () => {
         // Clear style cache after state update has been committed.
         // This way we don't break pure sCU for items that don't use isScrolling param.
         this._getItemStyleCache(-1);
-      });
+      }); */
     };
   };
 }
