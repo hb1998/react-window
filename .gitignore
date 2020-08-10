@@ -16,7 +16,7 @@ dist
 .env.test.local
 .env.production.local
 .watchmanconfig
-
+.npmrc
 package-lock.json
 npm-debug.log*
 yarn-debug.log*
