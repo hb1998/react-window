@@ -209,7 +209,7 @@ export default function createListComponent({
           scrollOffset: scrollOffset,
           scrollUpdateWasRequested: true,
         };
-      }, this._resetIsScrollingDebounced);
+      });
     }
 
     scrollToItem(index: number, align: ScrollToAlign = 'auto'): void {
@@ -564,7 +564,7 @@ export default function createListComponent({
           scrollOffset,
           scrollUpdateWasRequested: false,
         };
-      }, this._resetIsScrollingDebounced);
+      });
     };
 
     _onScrollVertical = (event: ScrollEvent): void => {
@@ -590,7 +590,7 @@ export default function createListComponent({
           scrollOffset,
           scrollUpdateWasRequested: false,
         };
-      }, this._resetIsScrollingDebounced);
+      });
     };
 
     _outerRefSetter = (ref: any): void => {
