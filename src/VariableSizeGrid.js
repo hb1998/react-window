@@ -263,27 +263,44 @@ const getOffsetForIndexAndAlignment = (
     }
   }
 
+ 
+  let targetScrollPosition;
   switch (align) {
     case 'start':
-      return maxOffset;
+      targetScrollPosition = maxOffset;
+      break;
+
     case 'end':
-      return minOffset;
+      targetScrollPosition = minOffset;
+      break;
+
     case 'center':
-      return Math.round(minOffset + (maxOffset - minOffset) / 2);
+      targetScrollPosition = Math.round(
+        minOffset + (maxOffset - minOffset) / 2
+      );
+      break;
+
     case 'auto':
     default:
       if (scrollOffset >= minOffset && scrollOffset <= maxOffset) {
-        return scrollOffset;
+        targetScrollPosition = scrollOffset;
       } else if (minOffset > maxOffset) {
         // Because we only take into account the scrollbar size when calculating minOffset
         // this value can be larger than maxOffset when at the end of the list
-        return minOffset;
+        targetScrollPosition = minOffset;
       } else if (scrollOffset < minOffset) {
-        return minOffset;
+        targetScrollPosition = minOffset;
       } else {
-        return maxOffset;
+        targetScrollPosition = maxOffset;
       }
   }
+  if (props.horizontalScrollOffset) {
+    const targetColumnPosition = itemMetadata.offset - targetScrollPosition;
+    if (targetColumnPosition <= props.horizontalScrollOffset) {
+      return Math.max(0, targetColumnPosition - props.horizontalScrollOffset);
+    }
+  }
+  return targetScrollPosition;
 };
 
 const VariableSizeGrid = createGridComponent({
@@ -505,3 +522,4 @@ const VariableSizeGrid = createGridComponent({
 });
 
 export default VariableSizeGrid;
+
