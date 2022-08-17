@@ -272,7 +272,7 @@ export default function createGridComponent({
           verticalScrollDirection:
             prevState.scrollTop < scrollTop ? 'forward' : 'backward',
         };
-      }, this._resetIsScrollingDebounced);
+      });
     }
 
     scrollToItem({
@@ -786,7 +786,7 @@ export default function createGridComponent({
             prevState.scrollTop < scrollTop ? 'forward' : 'backward',
           scrollUpdateWasRequested: false,
         };
-      }, this._resetIsScrollingDebounced);
+      });
     };
 
     _outerRefSetter = (ref: any): void => {
